@@ -7,6 +7,12 @@ const getBuildConfig = () => {
   const path = require('path')
 
   const nextConfig = {
+    env: {
+      HOST: 'http://localhost:3000',
+      APP_NAME: 'Shortly',
+      APP_DESCRIPTION: 'Say bye bye to long urls'
+    },
+    
     webpack(config) {
       config.module.rules.push({
         test: /\.svg$/,
