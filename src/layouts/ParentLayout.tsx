@@ -21,6 +21,11 @@ const ParentLayout: FC = ({ children, ...restProps }) => {
   const router = useRouter()
 
   useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) {
+      jssStyles.parentElement!.removeChild(jssStyles)
+    }
+
     console.log('Hello', router.pathname)
     window.scrollTo({
       top: 0,
