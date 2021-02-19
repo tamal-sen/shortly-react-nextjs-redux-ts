@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core'
+import CommonCTA from '@common/components/CommonCTA'
 import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
 
 export interface HomepageProps {
@@ -6,17 +6,19 @@ export interface HomepageProps {
 }
 
 const HomepageComponent: React.FC<HomepageProps> = (props) => {
-  const popup = () =>
-    props.actionShowSnackbar({
-      message: 'hello from the other side',
-      type: 'SUCESS',
-    })
+  // const popup = () =>
+  // 	props.actionShowSnackbar({
+  // 		message: 'hello from the other side',
+  // 		type: 'SUCESS',
+  // });
+
   return (
     <div>
-      <h1>Hello, World!</h1>
-      <Button color="primary" onClick={() => popup()}>
-        Dispatch a snackbar
-      </Button>
+      <CommonCTA
+        title="Boost your links today"
+        buttonText="Get Started"
+        buttonAction={() => console.log('CTA was clicked')}
+      />
     </div>
   )
 }

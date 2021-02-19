@@ -42,7 +42,13 @@ export default class CustomDocument extends Document<CustomDocumentProps> {
   public render(): JSX.Element {
     return (
       <Html>
-        <Head>{/* your head if needed */}</Head>
+        <Head>
+          {/* your head if needed */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <div dangerouslySetInnerHTML={{ __html: this.props.spriteContent }} />
           <Main />

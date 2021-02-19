@@ -1,5 +1,5 @@
 import React, { FC, useEffect, Fragment } from 'react'
-import { Theme } from '../config'
+import { theme } from '../config'
 import { useRouter } from 'next/router'
 import { Dispatch } from 'redux'
 import * as appActions from '../actions'
@@ -10,7 +10,7 @@ import {
   CommonSnackbar,
   SnackbarProps,
 } from '@common/components/CommonSnackbar'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 const mapStateToProps = (state: AppState) => ({ ...state })
@@ -36,7 +36,7 @@ const ParentLayout: FC = ({ children, ...restProps }) => {
 
   return (
     <Fragment>
-      <ThemeProvider theme={createMuiTheme(Theme)}>
+      <ThemeProvider theme={theme}>
         <CommonSnackbar {...(restProps as SnackbarProps)} />
         <CssBaseline />
         {children}

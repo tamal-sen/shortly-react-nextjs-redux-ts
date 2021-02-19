@@ -1,3 +1,5 @@
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core'
+
 // Create a theme instance.
 declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
@@ -19,6 +21,9 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 
 const theme = {
+  shape: {
+    borderRadius: 50,
+  },
   typography: {
     fontSize: 18,
     fontFamily: "'Poppins', sans-serif",
@@ -29,6 +34,10 @@ const theme = {
     h2: {
       fontWeight: 700,
       fontSize: '4rem',
+    },
+    h3: {
+      fontWeight: 700,
+      fontSize: '2.25rem',
     },
     body1: {
       fontSize: '1.125rem',
@@ -65,4 +74,4 @@ const theme = {
   },
 }
 
-export default theme
+export default responsiveFontSizes(createMuiTheme(theme))
