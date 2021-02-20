@@ -1,3 +1,4 @@
+import NavBar from '@common/components/NavBar'
 import HomepageContainer from '@containers/home/HomepageContainer'
 import Head from 'next/head'
 import React, { Fragment } from 'react'
@@ -11,6 +12,7 @@ const HomePage: React.FC = (props) => {
       <Head>
         <title>{process.env.APP_NAME ? process.env.APP_NAME : 'Shortly'}</title>
       </Head>
+      <NavBar />
       <main>
         <HomepageContainer {...props} />
       </main>

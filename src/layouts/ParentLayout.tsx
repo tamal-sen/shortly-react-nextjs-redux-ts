@@ -53,6 +53,9 @@ const ParentLayout: FC = ({ children, ...restProps }) => {
             margin-top: 0;
             margin-bottom: 0.5rem;
           }
+          a {
+            transition: color 0.2s ease-in;
+          }
         `}
       </style>
     </Fragment>
