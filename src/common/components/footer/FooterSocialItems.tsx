@@ -10,6 +10,7 @@ const useStyles = makeStyles<Theme>((theme) => ({
   menuItemsWrapper: {
     display: 'flex',
     maxWidth: '11rem',
+    padding: 0,
     [theme.breakpoints.down('sm')]: {
       margin: '0 auto',
       placeContent: 'center',

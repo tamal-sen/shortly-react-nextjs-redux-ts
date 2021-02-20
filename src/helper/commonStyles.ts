@@ -10,11 +10,11 @@ export const useCommonStyles = makeStyles<Theme>((theme) => ({
   wrapper: {
     padding: '0 1rem',
     margin: '0 auto',
-    [theme.breakpoints.up(1440)]: {
-      maxWidth: '1120px',
-    },
     [theme.breakpoints.up('md')]: {
       maxWidth: '900px',
+    },
+    [theme.breakpoints.up(1440)]: {
+      maxWidth: '1120px',
     },
   },
 }))

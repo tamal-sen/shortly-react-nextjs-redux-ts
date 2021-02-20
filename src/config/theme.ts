@@ -45,7 +45,7 @@ const theme = {
     },
     h5: {
       fontWeight: 700,
-      fontSize: '1.75rem',
+      fontSize: '1.25rem',
     },
     h6: {
       fontWeight: 700,
@@ -53,6 +53,9 @@ const theme = {
     },
     body1: {
       fontSize: '1.125rem',
+    },
+    body2: {
+      fontSize: '0.85rem',
     },
   },
 
