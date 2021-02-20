@@ -1,5 +1,7 @@
 import CommonCTA from '@common/components/CommonCTA'
+import Footer from '@common/components/footer/Footer'
 import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
+import React from 'react'
 
 export interface HomepageProps {
   actionShowSnackbar: (state: SnackbarState) => void
@@ -20,6 +22,7 @@ const HomepageComponent: React.FC<HomepageProps> = (props) => {
         buttonAction={() => console.log('CTA was clicked')}
         // forceFullWidth={false}
       />
+      <Footer />
     </div>
   )
 }

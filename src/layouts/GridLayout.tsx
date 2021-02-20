@@ -4,9 +4,9 @@ export const GridLayout: FC = ({ children }) => {
   return (
     <Fragment>
       <div className="container">{children}</div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .container {
-          padding: 1rem;
+          padding: 0 1rem;
           margin: 0 auto;
         }
 
@@ -21,7 +21,7 @@ export const GridLayout: FC = ({ children }) => {
             max-width: 1440px;
           }
         }
-      `}</style>
+      `}</style> */}
     </Fragment>
   )
 }
