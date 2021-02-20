@@ -1,5 +1,6 @@
 import { Grid, makeStyles, Theme, Typography } from '@material-ui/core'
 import CommonButton from '@common/components/CommonButton'
+import { commonUseStyles } from 'src/helper/commonStyles'
 
 const useStyles = makeStyles<Theme>((theme) => ({
   container: {
@@ -33,16 +34,23 @@ export interface ICommonCTAProps {
   title: string
   buttonText: string
   buttonAction: () => void
+  forceFullWidth?: boolean
 }
 
 const CommonCTA: React.FC<ICommonCTAProps> = ({
   title,
   buttonText,
   buttonAction,
+  forceFullWidth = true, // default value if optional value is empty
 }) => {
   const classes = useStyles()
+  const commonClasses = commonUseStyles()
   return (
-    <div className={classes.paper}>
+    <div
+      className={`${classes.paper} ${
+        forceFullWidth && commonClasses.forceFullWidth
+      }`}
+    >
       <Grid
         container
         alignItems="center"

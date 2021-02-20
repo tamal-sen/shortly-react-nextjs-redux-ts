@@ -18,6 +18,7 @@ const HomepageComponent: React.FC<HomepageProps> = (props) => {
         title="Boost your links today"
         buttonText="Get Started"
         buttonAction={() => console.log('CTA was clicked')}
+        // forceFullWidth={false}
       />
     </div>
   )

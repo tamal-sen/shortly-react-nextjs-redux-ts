@@ -3,6 +3,7 @@ import { AppProps } from 'next/app'
 import { storeWrapper } from '@store/store'
 import Head from 'next/head'
 import ParentLayout from 'src/layouts/ParentLayout'
+import { GridLayout } from 'src/layouts/GridLayout'
 
 /**
  * withRedux HOC
@@ -19,7 +20,9 @@ const ShortlyApp: FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
       <ParentLayout {...pageProps}>
-        <Component {...pageProps} />
+        <GridLayout>
+          <Component {...pageProps} />
+        </GridLayout>
       </ParentLayout>
     </Fragment>
   )
