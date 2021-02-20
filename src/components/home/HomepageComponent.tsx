@@ -1,5 +1,6 @@
 import CommonCTA from '@common/components/CommonCTA'
 import Footer from '@common/components/footer/Footer'
+import CommonHeroSection from '@common/components/sections/CommonHeroSection'
 import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
 import React from 'react'
 import AdvStatisticsSection from './AdvStatisticsSection'
@@ -17,6 +18,14 @@ const HomepageComponent: React.FC<HomepageProps> = (props) => {
 
   return (
     <div>
+      <CommonHeroSection
+        title="More than just shorter links"
+        subTitle="Build your brand's recognition and get detailed insights on how your links are performing"
+        buttonText="Get Started"
+        onClick={() => console.log('Hero section button was clicked')}
+        imageUrl="/images/illustration-working.svg"
+        alt="Illustration Working"
+      />
       <AdvStatisticsSection />
       <CommonCTA
         title="Boost your links today"

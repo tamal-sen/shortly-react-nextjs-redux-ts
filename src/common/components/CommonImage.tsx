@@ -5,11 +5,12 @@ export interface ICommonImageProps {
   fallbackSrc?: string
   alt?: string
   height?: string
+  width?: string
   [propName: string]: any // This is for restProps
 }
 
 const CommonImage: React.FC<ICommonImageProps> = (props) => {
-  const { height, src, alt, fallbackSrc, ...restProps } = props
+  const { height, width, src, alt, fallbackSrc, ...restProps } = props
 
   const [imageSource, setImageSource] = useState('')
 
@@ -30,7 +31,7 @@ const CommonImage: React.FC<ICommonImageProps> = (props) => {
     <img
       src={imageSource}
       alt={alt ? alt : 'Image'}
-      style={{ height }}
+      style={{ height, width }}
       {...restProps}
       onError={() => setImageError()}
     />

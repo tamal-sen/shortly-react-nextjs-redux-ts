@@ -29,11 +29,11 @@ const theme = {
     fontFamily: "'Poppins', sans-serif",
     h1: {
       fontWeight: 700,
-      fontSize: '6rem',
+      fontSize: '4rem',
     },
     h2: {
       fontWeight: 700,
-      fontSize: '4rem',
+      fontSize: '3.8rem',
     },
     h3: {
       fontWeight: 700,

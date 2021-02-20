@@ -8,13 +8,16 @@ export const useCommonStyles = makeStyles<Theme>((theme) => ({
     left: '50%',
   },
   wrapper: {
-    padding: '0 1rem',
+    padding: '0 1.5rem',
     margin: '0 auto',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '900px',
+      maxWidth: '940px',
     },
-    [theme.breakpoints.up(1440)]: {
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '1120px',
     },
+    // [theme.breakpoints.up(1920)]: {
+    //   maxWidth: '1120px',
+    // },
   },
 }))
