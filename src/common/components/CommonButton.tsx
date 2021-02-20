@@ -5,6 +5,7 @@ export interface ICommonButtonProps {
   onClick: () => void
   color?: 'primary' | 'secondary' | 'default' | 'inherit'
   borderRadius?: 'none' | 'small' | 'medium'
+  className?: string
   // variant?: 'contained' | 'outlined' | 'text';
   [propName: string]: any
 }
@@ -40,14 +41,21 @@ const getBorderRadius = (borderRadius: string | undefined) => {
   }
 }
 
-const CommonButton: React.FC<ICommonButtonProps> = (props) => {
+export const CommonButton: React.FC<ICommonButtonProps> = (props) => {
   const classes = useStyles(props)
-  const { color, children, borderRadius, onClick, ...restProps } = props
+  const {
+    color,
+    children,
+    borderRadius,
+    onClick,
+    className,
+    ...restProps
+  } = props
   return (
     <Button
       color={props.color ?? 'primary'}
       variant="contained"
-      className={classes.button}
+      className={className ? `${classes.button} ${className}` : classes.button}
       disableElevation={true}
       disableFocusRipple={true}
       onClick={onClick}
@@ -57,5 +65,3 @@ const CommonButton: React.FC<ICommonButtonProps> = (props) => {
     </Button>
   )
 }
-
-export default CommonButton

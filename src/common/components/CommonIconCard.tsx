@@ -7,7 +7,7 @@ import {
   Theme,
 } from '@material-ui/core'
 import React from 'react'
-import CommonImage from './CommonImage'
+import { CommonImage } from './CommonImage'
 
 export const useStyles = makeStyles<Theme, ICommonIconCardProps>((theme) => ({
   root: {
@@ -53,7 +53,7 @@ export interface ICommonIconCardProps {
   description?: string
 }
 
-const CommonIconCard: React.FC<ICommonIconCardProps> = (props) => {
+export const CommonIconCard: React.FC<ICommonIconCardProps> = (props) => {
   const { iconUrl, heading, description } = props
   const classes = useStyles(props)
   return (
@@ -82,5 +82,3 @@ const CommonIconCard: React.FC<ICommonIconCardProps> = (props) => {
     </Card>
   )
 }
-
-export default CommonIconCard

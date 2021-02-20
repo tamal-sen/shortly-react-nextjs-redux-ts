@@ -1,5 +1,5 @@
 import { Grid, makeStyles, Theme, Typography } from '@material-ui/core'
-import CommonButton from '@common/components/CommonButton'
+import { CommonButton } from '@common/components/CommonButton'
 import { useCommonStyles } from 'src/helper/commonStyles'
 
 const useStyles = makeStyles<Theme>((theme) => ({

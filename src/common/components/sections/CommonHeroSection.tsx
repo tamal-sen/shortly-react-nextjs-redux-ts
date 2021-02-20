@@ -1,8 +1,8 @@
 import { Grid, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { useCommonStyles } from 'src/helper/commonStyles'
-import CommonButton from '../CommonButton'
-import CommonImage from '../CommonImage'
+import { CommonButton } from '../CommonButton'
+import { CommonImage } from '../CommonImage'
 
 const useStyles = makeStyles<Theme, ICommonHeroSectionProps>((theme) => ({
   container: (props) => ({

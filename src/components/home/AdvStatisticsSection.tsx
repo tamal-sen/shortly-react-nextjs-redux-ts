@@ -1,5 +1,5 @@
-import CommonHeading from '@common/components/CommonHeading'
-import CommonIconCard from '@common/components/CommonIconCard'
+import { CommonHeading } from '@common/components/CommonHeading'
+import { CommonIconCard } from '@common/components/CommonIconCard'
 import { Grid, makeStyles } from '@material-ui/core'
 import { FC } from 'react'
 import { useCommonStyles } from 'src/helper/commonStyles'

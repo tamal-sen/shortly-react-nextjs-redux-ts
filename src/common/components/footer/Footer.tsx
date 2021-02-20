@@ -7,7 +7,7 @@ import {
 } from 'src/config/routesForFooter'
 import { socialMediaLinks } from 'src/config/socialLinks'
 import { useCommonStyles } from 'src/helper/commonStyles'
-import CommonImage from '../CommonImage'
+import { CommonImage } from '../CommonImage'
 import { MenuListGroup } from './FooterMenuItems'
 import { SocialMediaLinks } from './FooterSocialItems'
 

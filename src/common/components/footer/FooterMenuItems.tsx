@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import React, { FC, Fragment } from 'react'
-import CommonLink from '../CommonLink'
+import { CommonLink } from '../CommonLink'
 
 const useStyles = makeStyles<Theme>((theme) => ({
   menuHeading: {

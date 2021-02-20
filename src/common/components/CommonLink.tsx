@@ -23,7 +23,7 @@ const useStyles = makeStyles<Theme>((theme) => ({
   },
 }))
 
-const CommonLink: FC<ICommonLinkProps> = ({
+const _CommonLink: FC<ICommonLinkProps> = ({
   href,
   onClick,
   className,
@@ -44,7 +44,7 @@ const CommonLink: FC<ICommonLinkProps> = ({
     <Link
       href={href ? href : ''}
       onClick={actDefault ? undefined : handleClick}
-      className={className ? '${className} ${classes.root}' : classes.root}
+      className={className ? `${className} ${classes.root}` : classes.root}
       {...restProps}
     >
       {children}
@@ -52,4 +52,4 @@ const CommonLink: FC<ICommonLinkProps> = ({
   )
 }
 
-export default memo(CommonLink)
+export const CommonLink = memo(_CommonLink)

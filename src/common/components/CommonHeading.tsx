@@ -39,7 +39,7 @@ export interface ICommonHeadingProps {
   align?: 'right' | 'left' | 'center' | 'justify'
 }
 
-const CommonHeading: React.FC<ICommonHeadingProps> = (props) => {
+export const CommonHeading: React.FC<ICommonHeadingProps> = (props) => {
   const { title, subTitle, align = 'center' } = props
   const classes = useStyles(props)
   return (
@@ -53,5 +53,3 @@ const CommonHeading: React.FC<ICommonHeadingProps> = (props) => {
     </div>
   )
 }
-
-export default CommonHeading

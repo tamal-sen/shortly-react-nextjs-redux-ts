@@ -9,8 +9,8 @@ export interface ICommonImageProps {
   [propName: string]: any // This is for restProps
 }
 
-const CommonImage: React.FC<ICommonImageProps> = (props) => {
-  const { height, width, src, alt, fallbackSrc, ...restProps } = props
+export const CommonImage: React.FC<ICommonImageProps> = (props) => {
+  const { height = 'auto', width, src, alt, fallbackSrc, ...restProps } = props
 
   const [imageSource, setImageSource] = useState('')
 
@@ -37,5 +37,3 @@ const CommonImage: React.FC<ICommonImageProps> = (props) => {
     />
   )
 }
-
-export default CommonImage
