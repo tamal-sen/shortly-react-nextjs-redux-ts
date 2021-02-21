@@ -83,34 +83,6 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
   const classes = useStyles()
   const { links } = props
 
-  // const initialShortLinks = [
-  //   {
-  //     id: 1,
-  //     longLink:
-  //       'https://www.google.com/search?client=firefox-b-d&ei=nhIxYOfOM-aQ4-EPm7Ww2Ac&q=material+react+circle+icon+ui&oq=material+react+circle+icon+ui&gs_lcp=Cgdnd3Mtd2l6EAM6BwgAEEcQsAM6BAgAEBM6CggAEAgQBxAeEBM6CAgAEA0QHhATOgoIABAIEA0QHhATOgYIABAIEB5QrgxYzidgoiloAnABeACAAcgCiAHeFJIBBzAuNi42LjGYAQCgAQGqAQdnd3Mtd2l6yAECwAEB&sclient=gws-wiz&ved=0ahUKEwjnlYHTzPjuAhVmyDgGHZsaDHsQ4dUDCAw&uact=5',
-  //     shortLink: 'https://goo.gl/efjfkj',
-  //     copied: false,
-  //   },
-  //   {
-  //     id: 2,
-  //     longLink: 'https://google.com',
-  //     shortLink: 'https://goo.gl/HJeijd',
-  //     copied: false,
-  //   },
-  // ]
-  // const [shortLinks, setShortLinks] = useState(initialShortLinks)
-
-  // const handleCopyClick = (id: number) => {
-  //   const links = cloneObjectOrArray(shortLinks)
-  //   const index = links.findIndex((singleLink: any) => singleLink.id === id)
-  //   if (index < 0) {
-  //     console.log(index)
-  //   } else {
-  //     links[index].copied = true
-  //     setShortLinks(links)
-  //   }
-  // }
-
   const [longUrl, setLongUrl] = useState<string>('')
   const [actionButtonText, setActionButtonText] = useState<string>(
     'Shorten It!'
@@ -134,14 +106,6 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
     })
   }
 
-  // useEffect(() => {
-  //     if (!longUrl && longUrl == '') {
-  //         setErrorText('Please add a link')
-  //     } else {
-  //         setErrorText('')
-
-  //     }
-  // }, [longUrl])
   const validateForm = () => {
     if (!longUrl && longUrl == '') {
       setErrorText('Please add a link')
