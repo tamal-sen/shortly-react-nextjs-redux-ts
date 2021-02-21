@@ -3,14 +3,10 @@ import * as actions from 'src/actions'
 // import * as appActions from "actions";
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import HomepageComponent, {
-  HomepageProps,
-} from '@components/home/HomepageComponent'
+import HomepageComponent from '@components/home/HomepageComponent'
 import { AppState } from '@store/store'
 
-const HomepageContainer = (props: HomepageProps) => (
-  <HomepageComponent {...props} />
-)
+const HomepageContainer = (props: any) => <HomepageComponent {...props} />
 
 const mapStateToProps = (state: AppState) => ({ ...state })
 

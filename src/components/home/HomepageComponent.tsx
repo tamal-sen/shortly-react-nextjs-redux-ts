@@ -2,16 +2,13 @@ import CommonCTA from '@common/components/CommonCTA'
 import Footer from '@common/components/footer/Footer'
 import CommonHeroSection from '@common/components/sections/CommonHeroSection'
 import { useMediaQuery } from '@material-ui/core'
-import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
 import React from 'react'
 import { theme } from 'src/config'
+import { HomeProps } from 'src/pages'
 import AdvStatisticsSection from './AdvStatisticsSection'
 import { HomeShortingSection } from './HomeShortningSection'
-export interface HomepageProps {
-  actionShowSnackbar: (state: SnackbarState) => void
-}
 
-const HomepageComponent: React.FC<HomepageProps> = (props) => {
+const HomepageComponent: React.FC<HomeProps> = (props) => {
   const matchesMobile = useMediaQuery(theme.breakpoints.down('xs')) // const popup = () =>
   // 	props.actionShowSnackbar({
   // 		message: 'hello from the other side',
@@ -30,7 +27,7 @@ const HomepageComponent: React.FC<HomepageProps> = (props) => {
         imageWidth={matchesMobile ? '450' : '700'}
         imageHeight={matchesMobile ? '300' : '500'}
       />
-      <HomeShortingSection />
+      <HomeShortingSection {...props} />
       <AdvStatisticsSection />
       <CommonCTA
         title="Boost your links today"

@@ -21,7 +21,9 @@
     ],
     "lib": [
       "dom",
-      "es2017"
+      "es2017",
+      "dom.iterable",
+      "dom",
     ],
     "paths": {
       "@components/*": [

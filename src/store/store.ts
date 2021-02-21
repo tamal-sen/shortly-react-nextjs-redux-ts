@@ -11,6 +11,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createWrapper, MakeStore, HYDRATE } from 'next-redux-wrapper'
 
 import { counterReducer, CounterState } from './counter/counterReducer'
+import { LinkReducer, LinkListState } from './linkShortning/linkReducer'
 import {
   snackbarReducer,
   SnackbarState,
@@ -19,11 +20,13 @@ import {
 export interface AppState {
   counter: CounterState
   snackbar: SnackbarState
+  links: LinkListState
 }
 
 const appReducer = combineReducers({
   counter: counterReducer,
   snackbar: snackbarReducer,
+  links: LinkReducer,
 })
 
 const rootReducer: Reducer<AppState, AnyAction> = (state, action) => {

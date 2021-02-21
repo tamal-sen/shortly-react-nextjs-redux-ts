@@ -12,6 +12,7 @@ import {
 } from '@common/components/CommonSnackbar'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import HomePage, { HomeProps } from 'src/pages'
 
 const mapStateToProps = (state: AppState) => ({ ...state })
 const mapDispatchToProps = (dispatch: Dispatch) =>
@@ -39,7 +40,8 @@ const ParentLayout: FC = ({ children, ...restProps }) => {
       <ThemeProvider theme={theme}>
         <CommonSnackbar {...(restProps as SnackbarProps)} />
         <CssBaseline />
-        {children}
+        {/* {children} */}
+        <HomePage {...(restProps as HomeProps)} />
       </ThemeProvider>
       <style jsx global>
         {`

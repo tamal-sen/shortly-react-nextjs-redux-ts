@@ -9,9 +9,9 @@ const useStyles = makeStyles<Theme, ICommonHeroSectionProps>((theme) => ({
   container: (props) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.common.white,
-    padding: '3rem 0',
+    padding: '3rem 0 7rem 0',
     [theme.breakpoints.down('xs')]: {
-      padding: '0rem 0 1rem 0',
+      padding: '0rem 0 8rem 0',
     },
     // backgroundImage: `url(${props.imageUrl})`,
     //   backgroundRepeat: 'no-repeat',

@@ -3,7 +3,9 @@ import React, { Fragment, useState } from 'react'
 import { CommonButton } from './CommonButton'
 import { CommonTextField } from './CommonTextField'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { cloneObjectOrArray } from 'src/helper/cloneObjectOrArray'
+// import { cloneObjectOrArray } from 'src/helper/cloneObjectOrArray'
+import { fetchShortenUrl } from 'src/helper/fetchShortenUrl'
+import { HomeProps } from 'src/pages'
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,36 +79,37 @@ export const useStyles = makeStyles((theme) => ({
 }))
 // export interface IURLShortningComponentProps {}
 
-export const URLShortningComponent: React.FC = (props) => {
+export const URLShortningComponent: React.FC<HomeProps> = (props) => {
   const classes = useStyles()
+  const { links } = props
 
-  const initialShortLinks = [
-    {
-      id: 1,
-      longLink:
-        'https://www.google.com/search?client=firefox-b-d&ei=nhIxYOfOM-aQ4-EPm7Ww2Ac&q=material+react+circle+icon+ui&oq=material+react+circle+icon+ui&gs_lcp=Cgdnd3Mtd2l6EAM6BwgAEEcQsAM6BAgAEBM6CggAEAgQBxAeEBM6CAgAEA0QHhATOgoIABAIEA0QHhATOgYIABAIEB5QrgxYzidgoiloAnABeACAAcgCiAHeFJIBBzAuNi42LjGYAQCgAQGqAQdnd3Mtd2l6yAECwAEB&sclient=gws-wiz&ved=0ahUKEwjnlYHTzPjuAhVmyDgGHZsaDHsQ4dUDCAw&uact=5',
-      shortLink: 'https://goo.gl/efjfkj',
-      copied: false,
-    },
-    {
-      id: 2,
-      longLink: 'https://google.com',
-      shortLink: 'https://goo.gl/HJeijd',
-      copied: false,
-    },
-  ]
-  const [shortLinks, setShortLinks] = useState(initialShortLinks)
+  // const initialShortLinks = [
+  //   {
+  //     id: 1,
+  //     longLink:
+  //       'https://www.google.com/search?client=firefox-b-d&ei=nhIxYOfOM-aQ4-EPm7Ww2Ac&q=material+react+circle+icon+ui&oq=material+react+circle+icon+ui&gs_lcp=Cgdnd3Mtd2l6EAM6BwgAEEcQsAM6BAgAEBM6CggAEAgQBxAeEBM6CAgAEA0QHhATOgoIABAIEA0QHhATOgYIABAIEB5QrgxYzidgoiloAnABeACAAcgCiAHeFJIBBzAuNi42LjGYAQCgAQGqAQdnd3Mtd2l6yAECwAEB&sclient=gws-wiz&ved=0ahUKEwjnlYHTzPjuAhVmyDgGHZsaDHsQ4dUDCAw&uact=5',
+  //     shortLink: 'https://goo.gl/efjfkj',
+  //     copied: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     longLink: 'https://google.com',
+  //     shortLink: 'https://goo.gl/HJeijd',
+  //     copied: false,
+  //   },
+  // ]
+  // const [shortLinks, setShortLinks] = useState(initialShortLinks)
 
-  const handleCopyClick = (id: number) => {
-    const links = cloneObjectOrArray(shortLinks)
-    const index = links.findIndex((singleLink: any) => singleLink.id === id)
-    if (index < 0) {
-      console.log(index)
-    } else {
-      links[index].copied = true
-      setShortLinks(links)
-    }
-  }
+  // const handleCopyClick = (id: number) => {
+  //   const links = cloneObjectOrArray(shortLinks)
+  //   const index = links.findIndex((singleLink: any) => singleLink.id === id)
+  //   if (index < 0) {
+  //     console.log(index)
+  //   } else {
+  //     links[index].copied = true
+  //     setShortLinks(links)
+  //   }
+  // }
 
   const [longUrl, setLongUrl] = useState<string>('')
   const [errorText, setErrorText] = useState<string | undefined>('')
@@ -127,7 +130,23 @@ export const URLShortningComponent: React.FC = (props) => {
   const validateForm = () => {
     if (!longUrl && longUrl == '') {
       setErrorText('Please add a link')
+      return
     }
+
+    processDataFromAPI(longUrl)
+  }
+
+  const processDataFromAPI = (url: string) => {
+    fetchShortenUrl(url).then((response) => {
+      if (response && response.ok) {
+        props.actionAddLinkToList({
+          original_link: response.result.original_link,
+          short_link: response.result.short_link,
+        })
+      } else if (response && !response.ok) {
+        setErrorText(response.error ?? 'Something went wrong')
+      }
+    })
   }
   return (
     <Fragment>
@@ -169,45 +188,44 @@ export const URLShortningComponent: React.FC = (props) => {
         </Card>
       </div>
       <div className={classes.shortlinkContainer}>
-        {shortLinks &&
-          shortLinks.map((item, index) => {
-            return (
-              <Card key={index} elevation={0} className={'single'}>
-                <Grid
-                  container
-                  justify="space-between"
-                  alignItems="center"
-                  spacing={3}
-                >
-                  <Grid className={'longlink'} item xs={12} sm={6} md={7}>
-                    {item.longLink}
-                  </Grid>
-                  <Grid className={'shortlink'} item xs={12} sm={3} md={3}>
-                    {item.shortLink}
-                  </Grid>
-                  <Grid className={'copy-button'} item xs={12} sm={3} md={2}>
-                    <CopyToClipboard
-                      text={item.shortLink}
-                      onCopy={() => handleCopyClick(item.id)}
-                    >
-                      <CommonButton
-                        className={
-                          item.copied
-                            ? classes.buttonCopied
-                            : classes.buttonCopy
-                        }
-                        borderRadius="small"
-                        onClick={() => console.log('copy button was clicked')}
-                        fullWidth
-                      >
-                        {item.copied ? <span>Copied</span> : <span>Copy</span>}
-                      </CommonButton>
-                    </CopyToClipboard>
-                  </Grid>
+        {links?.list?.map((item, index) => {
+          return (
+            <Card key={index} elevation={0} className={'single'}>
+              <Grid
+                container
+                justify="space-between"
+                alignItems="center"
+                spacing={3}
+              >
+                <Grid className={'longlink'} item xs={12} sm={6} md={7}>
+                  {item.original_link}
                 </Grid>
-              </Card>
-            )
-          })}
+                <Grid className={'shortlink'} item xs={12} sm={3} md={3}>
+                  {item.short_link}
+                </Grid>
+                <Grid className={'copy-button'} item xs={12} sm={3} md={2}>
+                  <CopyToClipboard
+                    text={item.short_link}
+                    // onCopy={() => {}}
+                  >
+                    <CommonButton
+                      // className={
+                      //   item.copied
+                      //     ? classes.buttonCopied
+                      //     : classes.buttonCopy
+                      // }
+                      borderRadius="small"
+                      onClick={() => console.log('copy button was clicked')}
+                      fullWidth
+                    >
+                      Copy
+                    </CommonButton>
+                  </CopyToClipboard>
+                </Grid>
+              </Grid>
+            </Card>
+          )
+        })}
       </div>
     </Fragment>
   )
