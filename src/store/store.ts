@@ -17,6 +17,8 @@ import {
   SnackbarState,
 } from './common/snackbar/snackbarReducer'
 
+import { persistStore, persistReducer } from 'redux-persist'
+
 export interface AppState {
   counter: CounterState
   snackbar: SnackbarState
@@ -49,11 +51,27 @@ const rootReducer: Reducer<AppState, AnyAction> = (state, action) => {
  * initStore
  * Initialise and export redux store
  */
-const initStore: MakeStore<AppState> = () => {
-  return createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
-  )
+export const initStore: MakeStore<AppState> = () => {
+  const isClient = typeof window !== 'undefined'
+  let store
+
+  // We will persist store for client only
+  if (isClient) {
+    const storage = require('redux-persist/lib/storage').default
+    const persistConfig = { key: 'root', storage }
+    const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+    store = createStore(persistedReducer, applyMiddleware(thunkMiddleware))
+
+    // @ts-ignore
+    store.__PERSISTOR = persistStore(store)
+  } else {
+    store = createStore(
+      rootReducer,
+      composeWithDevTools(applyMiddleware(thunkMiddleware))
+    )
+  }
+  return store
 }
 
 export const storeWrapper = createWrapper(initStore)

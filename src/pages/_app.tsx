@@ -3,6 +3,8 @@ import { AppProps } from 'next/app'
 import { storeWrapper } from '@store/store'
 import Head from 'next/head'
 import ParentLayout from 'src/layouts/ParentLayout'
+import { PersistGate } from 'redux-persist/integration/react'
+import { useStore } from 'react-redux'
 
 /**
  * withRedux HOC
@@ -10,6 +12,10 @@ import ParentLayout from 'src/layouts/ParentLayout'
  */
 
 const ShortlyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const store = useStore()
+
+  // @ts-ignore
+  const myPersistor = store.__PERSISTOR
   return (
     <Fragment>
       <Head>
@@ -18,9 +24,11 @@ const ShortlyApp: FC<AppProps> = ({ Component, pageProps }) => {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
         />
       </Head>
-      <ParentLayout {...pageProps}>
-        <Component {...pageProps} />
-      </ParentLayout>
+      <PersistGate persistor={myPersistor} loading={null}>
+        <ParentLayout {...pageProps}>
+          <Component {...pageProps} />
+        </ParentLayout>
+      </PersistGate>
     </Fragment>
   )
 }
