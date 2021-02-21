@@ -112,11 +112,26 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
   // }
 
   const [longUrl, setLongUrl] = useState<string>('')
+  const [actionButtonText, setActionButtonText] = useState<string>(
+    'Shorten It!'
+  )
+  const [activeButtonIndex, setActiveButtonIndex] = useState<number | null>(
+    null
+  )
+
   const [errorText, setErrorText] = useState<string | undefined>('')
 
   const handleValueChange = (value: string) => {
     setLongUrl(value)
     setErrorText('')
+  }
+
+  const handleOnCopyClick = (index: number) => {
+    setActiveButtonIndex(index)
+    props.actionShowSnackbar({
+      message: 'Link is copied to your clipboard',
+      type: 'SUCESS',
+    })
   }
 
   // useEffect(() => {
@@ -137,16 +152,21 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
   }
 
   const processDataFromAPI = (url: string) => {
-    fetchShortenUrl(url).then((response) => {
-      if (response && response.ok) {
-        props.actionAddLinkToList({
-          original_link: response.result.original_link,
-          short_link: response.result.short_link,
-        })
-      } else if (response && !response.ok) {
-        setErrorText(response.error ?? 'Something went wrong')
-      }
-    })
+    setActionButtonText('Shortning...')
+    fetchShortenUrl(url)
+      .then((response) => {
+        if (response && response.ok) {
+          props.actionAddLinkToList({
+            original_link: response.result.original_link,
+            short_link: response.result.short_link,
+          })
+
+          setLongUrl('')
+        } else if (response && !response.ok) {
+          setErrorText(response.error ?? 'Something went wrong')
+        }
+      })
+      .then(() => setActionButtonText('Shorten It!'))
   }
   return (
     <Fragment>
@@ -180,7 +200,7 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
                   fullWidth
                   onClick={validateForm}
                 >
-                  Shorten It!
+                  {actionButtonText ?? 'Shorten It!'}
                 </CommonButton>
               </Grid>
             </Grid>
@@ -206,19 +226,20 @@ export const URLShortningComponent: React.FC<HomeProps> = (props) => {
                 <Grid className={'copy-button'} item xs={12} sm={3} md={2}>
                   <CopyToClipboard
                     text={item.short_link}
-                    // onCopy={() => {}}
+                    onCopy={() => handleOnCopyClick(index)}
                   >
                     <CommonButton
-                      // className={
-                      //   item.copied
-                      //     ? classes.buttonCopied
-                      //     : classes.buttonCopy
-                      // }
+                      // className={classes.buttonCopy}
+                      className={
+                        index == activeButtonIndex
+                          ? classes.buttonCopied
+                          : classes.buttonCopy
+                      }
                       borderRadius="small"
                       onClick={() => console.log('copy button was clicked')}
                       fullWidth
                     >
-                      Copy
+                      {index == activeButtonIndex ? 'Copied' : 'Copy'}
                     </CommonButton>
                   </CopyToClipboard>
                 </Grid>

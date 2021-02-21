@@ -1,5 +1,6 @@
 import NavBar from '@common/components/NavBar'
 import HomepageContainer from '@containers/home/HomepageContainer'
+import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
 import { LinkListState, LinkState } from '@store/linkShortning/linkReducer'
 import Head from 'next/head'
 import React, { Fragment } from 'react'
@@ -11,10 +12,11 @@ import React, { Fragment } from 'react'
 export interface HomeProps {
   links: LinkListState
   actionAddLinkToList: (state: LinkState) => void
+  actionShowSnackbar: (state: SnackbarState) => void
 }
 
 const HomePage: React.FC<HomeProps> = (props) => {
-  console.log('props->> ', props)
+  // console.log('props->> ', props)
   return (
     <Fragment>
       <Head>
