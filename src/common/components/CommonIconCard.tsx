@@ -7,7 +7,8 @@ import {
   Theme,
 } from '@material-ui/core'
 import React from 'react'
-import { CommonImage } from './CommonImage'
+// import { CommonImage } from './CommonImage'
+import { CommonNextImage } from './CommonNextImage'
 
 export const useStyles = makeStyles<Theme, ICommonIconCardProps>((theme) => ({
   root: {
@@ -43,6 +44,9 @@ export const useStyles = makeStyles<Theme, ICommonIconCardProps>((theme) => ({
     padding: '2.3rem',
     marginTop: '-4.375rem',
     boxShadow: '0px 7px 25px 7px rgba(0,0,0,0.05)',
+    '& > div': {
+      position: 'absolute !important' as 'absolute',
+    },
   }),
 }))
 
@@ -61,7 +65,13 @@ export const CommonIconCard: React.FC<ICommonIconCardProps> = (props) => {
       <CardContent>
         <div className={classes.avatarWrapper}>
           <Avatar className={classes.avatar}>
-            <CommonImage src={iconUrl} />
+            <CommonNextImage
+              src={iconUrl}
+              alt="Card Image"
+              objectFit="contain"
+              width="40"
+            />
+            {/* <CommonImage src={iconUrl} /> */}
           </Avatar>
         </div>
         <Typography

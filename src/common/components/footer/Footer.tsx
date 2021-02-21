@@ -7,7 +7,8 @@ import {
 } from 'src/config/routesForFooter'
 import { socialMediaLinks } from 'src/config/socialLinks'
 import { useCommonStyles } from 'src/helper/commonStyles'
-import { CommonImage } from '../CommonImage'
+// import { CommonImage } from '../CommonImage'
+import { CommonNextImage } from '../CommonNextImage'
 import { MenuListGroup } from './FooterMenuItems'
 import { SocialMediaLinks } from './FooterSocialItems'
 
@@ -37,9 +38,12 @@ const Footer: FC = () => {
       <div className={commonClasses.wrapper}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={4} lg={4}>
-            <CommonImage
+            <CommonNextImage
               src="/images/logo-white.svg"
               alt="Shortly Footer logo"
+              width="120"
+              height="30"
+              objectFit="contain"
             />
           </Grid>
           <Grid item xs={12} sm={9} md={6} lg={6}>

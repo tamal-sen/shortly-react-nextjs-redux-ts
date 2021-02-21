@@ -2,13 +2,17 @@ import { Grid, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { useCommonStyles } from 'src/helper/commonStyles'
 import { CommonButton } from '../CommonButton'
-import { CommonImage } from '../CommonImage'
+// import { CommonImage } from '../CommonImage'
+import { CommonNextImage } from '../CommonNextImage'
 
 const useStyles = makeStyles<Theme, ICommonHeroSectionProps>((theme) => ({
   container: (props) => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.common.white,
     padding: '3rem 0',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0rem 0 1rem 0',
+    },
     // backgroundImage: `url(${props.imageUrl})`,
     //   backgroundRepeat: 'no-repeat',
     //   backgroundPosition: '100%',
@@ -43,6 +47,8 @@ export interface ICommonHeroSectionProps {
   title: string
   subTitle?: string
   imageUrl: string
+  imageWidth?: string
+  imageHeight?: string
   alt?: string
   backgroundColor?: string
   buttonText?: string
@@ -50,7 +56,17 @@ export interface ICommonHeroSectionProps {
 }
 
 const CommonHeroSection: React.FC<ICommonHeroSectionProps> = (props) => {
-  const { title, id, subTitle, imageUrl, buttonText, onClick, alt } = props
+  const {
+    title,
+    id,
+    subTitle,
+    imageUrl,
+    buttonText,
+    onClick,
+    imageWidth,
+    imageHeight,
+    alt,
+  } = props
   const classes = useStyles(props)
   const commonClasses = useCommonStyles()
   return (
@@ -89,7 +105,14 @@ const CommonHeroSection: React.FC<ICommonHeroSectionProps> = (props) => {
             sm={6}
             lg={6}
           >
-            <CommonImage src={imageUrl} alt={alt} width="150%" />
+            <CommonNextImage
+              src={imageUrl}
+              alt={alt}
+              layout="fixed"
+              width={imageWidth ?? '600'}
+              height={imageHeight ?? '400'}
+              objectFit="contain"
+            />
           </Grid>
         </Grid>
       </div>
