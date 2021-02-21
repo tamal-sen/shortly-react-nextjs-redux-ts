@@ -6,6 +6,7 @@ import { SnackbarState } from '@store/common/snackbar/snackbarReducer'
 import React from 'react'
 import { theme } from 'src/config'
 import AdvStatisticsSection from './AdvStatisticsSection'
+import { HomeShortingSection } from './HomeShortningSection'
 export interface HomepageProps {
   actionShowSnackbar: (state: SnackbarState) => void
 }
@@ -29,6 +30,7 @@ const HomepageComponent: React.FC<HomepageProps> = (props) => {
         imageWidth={matchesMobile ? '450' : '700'}
         imageHeight={matchesMobile ? '300' : '500'}
       />
+      <HomeShortingSection />
       <AdvStatisticsSection />
       <CommonCTA
         title="Boost your links today"

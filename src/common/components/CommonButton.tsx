@@ -55,7 +55,7 @@ export const CommonButton: React.FC<ICommonButtonProps> = (props) => {
     <Button
       color={props.color ?? 'primary'}
       variant="contained"
-      className={className ? `${classes.button} ${className}` : classes.button}
+      className={className ? `${className} ${classes.button}` : classes.button}
       disableElevation={true}
       disableFocusRipple={true}
       onClick={onClick}
