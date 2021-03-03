@@ -1,6 +1,19 @@
-# NextJS Boilerplate
+# Shortly - React NextJS App
 
-An opinionated boilerplate to kickstart projects using NextJS
+This project is bootstrapped from [https://github.com/sanjaytwisk/nextjs-ts](https://github.com/sanjaytwisk/nextjs-ts)
+
+**Utilizes:**
+✅ NextJS
+✅ Redux
+✅ Redux Persist
+✅ Material UI
+
+### A working demo can be found here [https://shortly.tamal.dev](https://shortly.tamal.dev)
+
+![Desktop Design File](design/desktop-design.jpg)
+
+![Mobile Design File](design/mobile-design.jpg)
+
 
 **Features**
 
